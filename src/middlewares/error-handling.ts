@@ -14,11 +14,13 @@ export function errorHandler(
     return response.status(error.statusCode).json({ message: error.message });
   }
 
+  // Intercepta erros de validação do Zod
+  // Devolve 400 (Bad Request) com o formato de erro estruturado pelo `.format()`
   if (error instanceof ZodError) {
     return response.status(400).json({
       message: "validation error",
       issues: error.format(),
-    })
+    });
   }
 
   // Tratamento de erros inesperados (não mapeados pela aplicação)
