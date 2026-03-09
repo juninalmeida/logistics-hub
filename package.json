@@ -9,6 +9,7 @@
   "author": "Horácio Júnior",
   "license": "API de entregas",
   "dependencies": {
+    "@prisma/client": "^5.19.1",
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
     "zod": "^3.23.0"
