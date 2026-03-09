@@ -1,0 +1,9 @@
+// Este arquivo é o coração do Prisma. É aqui que definimos a conexão com o banco e o formato de todas as tabelas.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
