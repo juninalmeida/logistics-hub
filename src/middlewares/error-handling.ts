@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { AppError } from "@/utils/AppError";
+import { ZodError } from "zod";
 
 // Middleware global de erros do Express obriga a assinatura exata de 4 parâmetros.
 
@@ -11,6 +12,13 @@ export function errorHandler(
 ) {
   if (error instanceof AppError) {
     return response.status(error.statusCode).json({ message: error.message });
+  }
+
+  if (error instanceof ZodError) {
+    return response.status(400).json({
+      message: "validation error",
+      issues: error.format(),
+    })
   }
 
   // Tratamento de erros inesperados (não mapeados pela aplicação)
