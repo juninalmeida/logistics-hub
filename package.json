@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "node --import tsx --watch-path=src src/server.ts"
   },
   "author": "Horácio Júnior",
   "license": "API de entregas",
