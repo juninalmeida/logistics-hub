@@ -32,6 +32,14 @@ class DeliveriesStatusController {
       },
     });
 
+    // Audit Trail automático: cada mudança de status gera um log imutável de rastreio.
+    await prisma.deliveryLog.create({
+      data: {
+        deliveryId: id,
+        description: status,
+      },
+    });
+
     return response.json();
   }
 }
