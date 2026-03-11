@@ -1,12 +1,14 @@
 import { Router } from "express";
 
 import { DeliveriesController } from "@/controllers/deliveries-controller";
+import { DeliveriesStatusController } from "@/controllers/deliveries-status-controller";
 
 import { ensureAuthenticated } from "@/middlewares/ensune-authenticated";
 import { verifyUserAuthorization } from "@/middlewares/verify-user-authorization";
 
 const deliveriesRoutes = Router();
 const deliveriesController = new DeliveriesController();
+const deliveriesStatusController = new DeliveriesStatusController();
 
 // Instala ( Middlewares ) na entrada deste corredor.
 // 1º: NENHUMA rota abaixo funciona sem o usuário mandar um Token válido no Header (Autenticação).
@@ -14,5 +16,9 @@ const deliveriesController = new DeliveriesController();
 deliveriesRoutes.use(ensureAuthenticated, verifyUserAuthorization(["sale"]));
 deliveriesRoutes.post("/", deliveriesController.create);
 deliveriesRoutes.get("/", deliveriesController.index);
+
+// Usamos o  PATCH invés de PUT porque não estamos re-escrevendo a Caixa inteira (como alterar também o dono ou a descrição),
+// estamos atualizando APENAS e exclusivamente um pedaço específico dela (o status).
+deliveriesRoutes.patch("/:id/status", deliveriesStatusController.update);
 
 export { deliveriesRoutes };
