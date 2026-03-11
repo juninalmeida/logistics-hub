@@ -17,4 +17,13 @@ deliveryLogsRoutes.post(
   deliveryLogsController.create,
 );
 
+// Diferente do POST (que só Funcionário pode criar), o GET de visualizar logs permite 
+// que o Cliente final com crachá "customer" entre pra rastrear a compra dele.
+deliveryLogsRoutes.get(
+  "/:delivery_id/show",
+  ensureAuthenticated,
+  verifyUserAuthorization(["sale", "customer"]),
+  deliveryLogsController.show,
+);
+
 export { deliveryLogsRoutes };
