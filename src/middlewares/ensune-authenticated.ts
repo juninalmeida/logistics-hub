@@ -35,8 +35,10 @@ function ensureAuthenticated(
       role,
     };
 
-    return next()
+    return next();
   } catch (error) {
     throw new AppError("Invalid JWT token", 401);
   }
 }
+
+export { ensureAuthenticated };
