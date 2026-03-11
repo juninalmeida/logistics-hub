@@ -13,5 +13,6 @@ const deliveriesController = new DeliveriesController();
 // 2º: Passou? Então verifica se o cargo/role do cara permite ele ficar nesse corredor (Autorização).
 deliveriesRoutes.use(ensureAuthenticated, verifyUserAuthorization(["sale"]));
 deliveriesRoutes.post("/", deliveriesController.create);
+deliveriesRoutes.get("/", deliveriesController.index);
 
 export { deliveriesRoutes };

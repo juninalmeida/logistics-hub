@@ -14,7 +14,7 @@ class DeliveriesController {
 
     await prisma.delivery.create({
       data: {
-        // userId é a "Etiqueta in-removível" (Foreign Key). 
+        // userId é a "Etiqueta in-removível" (Foreign Key).
         // Estamos colando a caixa (delivery) na prateleira do usuário (user_id) pra sempre.
         userId: user_id,
         description,
@@ -22,8 +22,22 @@ class DeliveriesController {
     });
 
     // O DeliveriesController. Graças ao "Middleware" instalado na rota, este controller tem certeza absoluta que quem chegou aqui está autenticado.
-    // Usamos o status 201 (Created) porque uma nova entidade/caixa acabou de nascer no galpão, é mais semântico que o 200 (OK genérico).
+    // Usamos o status 201 (Created)
     return response.status(201).json();
+  }
+
+  async index(request: Request, response: Response) {
+    const deliveries = await prisma.delivery.findMany({
+      // O include instrui o Prisma a fazer um JOIN no banco de dados.
+      // Em vez de só trazer dados da Caixa, ele traz os dados do Cliente (User) dono dela também, em 1 única ida ao banco
+      include: {
+        // Usamos o 'select' para esculpir o que queremos do User.
+        // NUNCA retorne o User inteiro num include, pois a senha vazaria junto!
+        user: { select: { name: true, email: true } },
+      },
+    });
+
+    return response.json(deliveries);
   }
 }
 
