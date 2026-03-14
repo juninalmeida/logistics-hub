@@ -22,4 +22,15 @@ describe("UsersController", () => {
 
     user_id = response.body.id;
   });
+
+  it("should throw an error if user same email already exists", async () => {
+    const response = await request(app).post("/users").send({
+      name: "Duplicate User",
+      email: "testuser@example.com",
+      password: "password123",
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe("Usuário já cadastrado com este e-mail.");
+  });
 });
