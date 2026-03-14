@@ -8,7 +8,7 @@ const config: Config = {
   testEnvironment: "node",
   testMatch: ["<rootDir>/src/**/*.test.ts"],
   moduleNameMapper: {
-    "ˆ@/(.*)$": "<rootDir>/src/$1",
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
 };
 

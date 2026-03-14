@@ -4,13 +4,13 @@ import { authConfig } from "@/configs/auth";
 import { AppError } from "@/utils/AppError";
 
 interface TokenPayload {
-  role: String;
+  role: string;
   sub: string;
 }
 
 function ensureAuthenticated(
   request: Request,
-  response: Response,
+  _response: Response,
   next: NextFunction,
 ) {
   try {
