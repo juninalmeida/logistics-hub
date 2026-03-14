@@ -271,8 +271,8 @@ logistics-hub/
 
 ---
 
-## Autor
+### Horacio Junior
 
-Feito por **Horácio Júnior** — [LinkedIn](https://www.linkedin.com/in/j%C3%BAnior-almeida-3563a934b/) · [GitHub](https://github.com/juninalmeida)
-
+- 💼 [LinkedIn](https://www.linkedin.com/in/j%C3%BAnior-almeida-3563a934b/)
+- 💻 [GitHub](https://github.com/juninalmeida)
 - ✉️ [Email](mailto:junioralmeidati2023@gmail.com)
